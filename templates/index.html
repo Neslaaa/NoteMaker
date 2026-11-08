@@ -1,0 +1,45 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>NoteMaker</title>
+
+    <link rel="stylesheet"
+    href="{{ url_for('static', filename='style.css') }}">
+</head>
+
+<body>
+
+    <div class="container">
+
+        <h1>Welcome to NoteMaker!</h1>
+
+        <p>Upload a PDF and extract its text easily.</p>
+
+        <h3>Upload Your Study Notes</h3>
+
+        <form action="/upload" method="POST"
+              enctype="multipart/form-data">
+
+            <input type="file" name="file" accept=".pdf" required>
+
+            <br>
+
+            <button type="submit">Upload PDF</button>
+
+        </form>
+
+        {% if extracted_text %}
+
+            <h2>Extracted Text</h2>
+
+            <div class="result">
+                {{ extracted_text | replace('\n', '<br>') | safe }}
+            </div>
+
+        {% endif %}
+
+    </div>
+
+</body>
+</html>
